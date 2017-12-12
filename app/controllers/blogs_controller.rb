@@ -1,7 +1,9 @@
 class BlogsController < ApplicationController
+before_action :set_blog, only: [:show, :edit, :update, :destroy]
+
 
 	def index
-    	@blog = Blog.all
+    	@blogs = Blog.all
  	end
 
  	def show
@@ -23,12 +25,14 @@ class BlogsController < ApplicationController
     def destroy
     	@blog.destroy
         respond_to do |format|
-        format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }
+        	format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }
+    	end
     end
   
   
 	def update
         respond_to do |format|
-        @blog.update(blog_params)  
+        @blog.update(blog_params) 
+        end 
     end
 end
